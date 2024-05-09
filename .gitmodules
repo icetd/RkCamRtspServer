@@ -1,0 +1,6 @@
+[submodule "thirdparty/libv4l2cc"]
+	path = thirdparty/libv4l2cc
+	url = https://github.com/icetd/libv4l2cc.git
+[submodule "thirdparty/libjpeg-turbo"]
+	path = thirdparty/libjpeg-turbo
+	url = https://github.com/icetd/libjpeg-turbo.git

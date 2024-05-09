@@ -1,0 +1,4 @@
+.clangd/
+build/
+thirdparty/mpp
+compile_commands.json
