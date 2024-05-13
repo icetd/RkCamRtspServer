@@ -1,5 +1,6 @@
 #include "RkEncoder.h"
 #include "log.h"
+#include <linux/videodev2.h>
 #include <unistd.h>
 #include <memory.h>
 
@@ -26,6 +27,7 @@ RkEncoder::RkEncoder(Encoder_Param_t param) : m_param(param)
 
 RkEncoder::~RkEncoder()
 {
+	m_mpi->reset(m_contex);
 }
 
 int RkEncoder::init()
