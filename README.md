@@ -56,6 +56,7 @@ bitrate = 1440
 %Cpu7  :  0.0 us,  0.0 sy,  0.0 ni,100.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
 ```
 
+
 - CamRtspServer cpu usage
 ```
 %Cpu0  : 19.6 us,  1.0 sy,  0.0 ni, 77.3 id,  0.0 wa,  0.0 hi,  2.1 si,  0.0 st
