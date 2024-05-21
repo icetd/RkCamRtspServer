@@ -20,7 +20,7 @@ set(MPP_LIB			"${CMAKE_SOURCE_DIR}/thirdparty/mpp/lib")
 
 link_directories(
 	${MPP_LIB}
-)
+	)
 
 include_directories(
 	${INCLUDE_DIR}
@@ -28,19 +28,19 @@ include_directories(
 	${JPEGTURBO_INC}
 	${MPP_INC}
 	${LIVE555_INC}
-) 
+	) 
 
 file(GLOB_RECURSE SRC_FILES
 	"${SOURCE_DIR}/*c*"
-)
+	)
 
 file (GLOB_RECURSE INC_FILES
-    "${INCLUDE_DIR}/*.h"
-)
+	"${INCLUDE_DIR}/*.h"
+	)
 
 
 list(APPEND EXTRA_LIBS
-)
+	)
 
 # Add the executable
 add_executable(${PROJECT_NAME} ${SRC_FILES} ${LIVE555_FILES} ${INC_FILES} ${LIVE555_INC_FILES})
@@ -54,8 +54,8 @@ target_compile_definitions(${PROJECT_NAME} PUBLIC  ${LIVE555_CFLAGS})
 #===================== LINKING LIBRARIES =======================#
 target_link_libraries(${PROJECT_NAME} v4l2cc pthread rockchip_vpu rockchip_mpp turbojpeg ${EXTRA_LIBS})
 if (OpenSSL_FOUND)
-    target_link_libraries(${PROJECT_NAME} OpenSSL::SSL)
+	target_link_libraries(${PROJECT_NAME} OpenSSL::SSL)
 endif ()
 
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/configs
-		DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+	DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
