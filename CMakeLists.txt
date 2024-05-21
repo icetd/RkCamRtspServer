@@ -11,12 +11,12 @@ include (cmake/live555.cmake)
 add_subdirectory(thirdparty/libv4l2cc)
 add_subdirectory(thirdparty/libjpeg-turbo)
 
-set(INCLUDE_DIR		"${CMAKE_SOURCE_DIR}/inc")
-set(SOURCE_DIR		"${CMAKE_SOURCE_DIR}/src")
-set(V4L2CC_INC		"${CMAKE_SOURCE_DIR}/thirdparty/libv4l2cc/inc")
+set(INCLUDE_DIR     "${CMAKE_SOURCE_DIR}/inc")
+set(SOURCE_DIR      "${CMAKE_SOURCE_DIR}/src")
+set(V4L2CC_INC      "${CMAKE_SOURCE_DIR}/thirdparty/libv4l2cc/inc")
 set(JPEGTURBO_INC   "${CMAKE_SOURCE_DIR}/thirdparty/libjpeg-turbo")
-set(MPP_INC			"${CMAKE_SOURCE_DIR}/thirdparty/mpp/include")
-set(MPP_LIB			"${CMAKE_SOURCE_DIR}/thirdparty/mpp/lib")
+set(MPP_INC         "${CMAKE_SOURCE_DIR}/thirdparty/mpp/include")
+set(MPP_LIB         "${CMAKE_SOURCE_DIR}/thirdparty/mpp/lib")
 
 link_directories(
 	${MPP_LIB}
