@@ -32,7 +32,7 @@ device = /dev/video0
 [server]
 rtsp_port = 8554
 stream_name = unicast
-max_buf_size = 200000   ;Push high-resolution settings to large
+max_buf_size = 200000   ;Push high-resolution or high-quality settings to a larger setting
 max_packet_size  = 1500
 http_enable = false
 http_port = 8000
