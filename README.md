@@ -26,13 +26,13 @@ width = 640
 height = 480
 fps = 30
 fix_qp = 23     ;[0 - 51] [high - low]
-format = YUY2   ;[MJPEG] 720P
+format = YUY2   ;[MJPEG] 720P 1080P
 device = /dev/video0
 
 [server]
 rtsp_port = 8554
 stream_name = unicast
-max_buf_size = 200000
+max_buf_size = 200000   ;Push high-resolution settings to large
 max_packet_size  = 1500
 http_enable = false
 http_port = 8000
