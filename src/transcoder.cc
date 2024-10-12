@@ -70,8 +70,7 @@ void TransCoder::init()
 void TransCoder::run()
 {
     timeval tv;
-    for (;;)
-    {
+    for (;;) {
         tv.tv_sec = 1;
         tv.tv_usec = 0;
         int startCode = 0;
