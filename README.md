@@ -24,9 +24,9 @@ level = NOTICE
 [video]
 width = 640
 height = 480
-fps = 30
+fps = 30        ;no used in MIPI
 fix_qp = 23     ;[0 - 51] [high - low]
-format = YUY2   ;[MJPEG] 720P 1080P
+format = YUY2   ;uvcvideo: [MJPEG] [YUY2] | MIPI_CSI: [NV12] [NV16] [NV21] [NV61]
 device = /dev/video0
 
 [server]
