@@ -15,6 +15,7 @@ typedef struct
 	int height;
 	int hor_stride;
 	int ver_stride;
+    int header_size;
 	int frame_size;
 	int fps;
 	int fix_qp;

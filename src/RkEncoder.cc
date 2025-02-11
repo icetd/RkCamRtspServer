@@ -5,7 +5,7 @@
 #include <unistd.h>
 #include <memory.h>
 
-#define MPP_ALIGN(x, a) (((x) + (a) - 1) & ~((a) - 1))
+#define MPP_ALIGN(x, a)     (((x) + (a) - 1) & ~((a) - 1))
 
 RkEncoder::RkEncoder(Encoder_Param_t param) : m_param(param)
 {

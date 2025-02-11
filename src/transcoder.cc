@@ -4,6 +4,7 @@
 #include "INIReader.h"
 #include "log.h"
 
+
 TransCoder::TransCoder()
 {
     init();
@@ -18,6 +19,7 @@ void TransCoder::init()
     std::list<uint32_t> formatList;
     v4l2IoType ioTypeIn = IOTYPE_MMAP;
     MppFrameFormat mpp_fmt;
+    v4l2_buf_type buf_type;
     
     INIReader configs("./configs/config.ini");
     if (configs.ParseError() < 0) {
@@ -34,12 +36,35 @@ void TransCoder::init()
         if (config.format == "YUY2") {
             formatList.push_back(V4L2_PIX_FMT_YUYV);
             mpp_fmt = MPP_FMT_YUV422_YUYV;
+            buf_type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
         } else if (config.format == "MJPEG") {
             formatList.push_back(V4L2_PIX_FMT_MJPEG);
             mpp_fmt = MPP_FMT_YUV422P;
+            buf_type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
+        } else if (config.format == "NV12") {
+            formatList.push_back(V4L2_PIX_FMT_NV12);
+            mpp_fmt = MPP_FMT_YUV420SP;
+            buf_type = V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE;
+        } else if (config.format == "NV21") {
+            formatList.push_back(V4L2_PIX_FMT_NV21);
+            mpp_fmt = MPP_FMT_YUV420SP_VU;
+            buf_type = V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE;
+        } else if (config.format == "NV61") {
+            formatList.push_back(V4L2_PIX_FMT_NV16);
+            mpp_fmt = MPP_FMT_YUV422SP;
+            buf_type = V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE;
+        } else if (config.format == "NV16") {
+            formatList.push_back(V4L2_PIX_FMT_NV61);
+            mpp_fmt = MPP_FMT_YUV422SP_VU;
+            buf_type = V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE;
+        } else if (config.format == "UYVY") {
+            formatList.push_back(V4L2_PIX_FMT_UYVY);
+            mpp_fmt = MPP_FMT_YUV422_UYVY;
+            buf_type = V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE;
         }
     }
 
+    
     V4L2DeviceParameters param(config.device_name.c_str(),
                                formatList,
                                config.width,
@@ -48,7 +73,9 @@ void TransCoder::init()
                                ioTypeIn,
                                DEBUG);
 
-    capture = V4l2Capture::create(param);
+
+    
+    capture = V4l2Capture::create(param, buf_type);
     encodeData = (uint8_t *)malloc(capture->getBufferSize());
     
     decompress = new DeCompress();
@@ -85,9 +112,12 @@ void TransCoder::run()
                     frameSize = rk_encoder->encode(yuv_buf, yuv_size, encodeData);
                     free(yuv_buf);               
                 }
-            } else if (config.format == "YUY2") {
+            } else if (config.format != "MJPEG") {
                 frameSize = rk_encoder->encode(buffer, resize, encodeData);
+            } else  {
+                break;
             }
+             
             LOG(INFO, "encodeData size %d", frameSize);
             if (rk_encoder->startCode3(encodeData))
                 startCode = 3;

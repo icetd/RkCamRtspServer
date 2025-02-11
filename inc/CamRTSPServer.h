@@ -6,6 +6,7 @@
 #include <GroupsockHelper.hh>
 #include <liveMedia.hh>
 #include <string>
+#include <memory>
 
 #include "CamFramedSource.h"
 #include "CamUnicastServerMediaSubsession.h"
