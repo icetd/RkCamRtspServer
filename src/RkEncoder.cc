@@ -98,7 +98,7 @@ int RkEncoder::init()
 	 * 40 / 41 / 42         - 1080p@30fps / 1080p@30fps / 1080p@60fps
 	 * 50 / 51 / 52         - 4K@30fps
 	 */
-	mpp_enc_cfg_set_s32(cfg, "h264:level", 40);
+	mpp_enc_cfg_set_s32(cfg, "h264:level", 52);
 	mpp_enc_cfg_set_s32(cfg, "h264:cabac_en", 1);
 	mpp_enc_cfg_set_s32(cfg, "h264:cabac_idc", 0);
 	mpp_enc_cfg_set_s32(cfg, "h264:trans8x8", 1);
