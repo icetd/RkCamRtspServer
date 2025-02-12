@@ -4,7 +4,7 @@ simple rtspserver for rk hardware
 ## test env
 - rk3588s
 - ubuntu 20.04
-- test camera: ov13850
+- test mipi camera: ov13850
 
 ## build && run
 ```
