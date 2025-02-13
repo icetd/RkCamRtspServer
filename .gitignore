@@ -1,4 +1,5 @@
 .clangd/
+.vscode/
 build/
 thirdparty/mpp
 compile_commands.json
