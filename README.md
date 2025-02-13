@@ -25,7 +25,7 @@ level = NOTICE
 [video]
 width = 640
 height = 480
-fps = 30        ;no used in MIPI
+fps = 30        ;not working in MIPI mode, fps depends on your media pipeline && iqfiles && mipi_cis driver
 fix_qp = 23     ;[0 - 51] [high - low]
 format = YUY2   ;uvcvideo: [MJPEG] [YUY2] | MIPI_CSI: [NV12] [NV16] [NV21] [NV61]
 device = /dev/video0
@@ -40,10 +40,58 @@ http_port = 8000
 bitrate = 1440
 ```
 
+### config demo for uvc
+```
+[log]
+level = NOTICE
+
+[video]
+width = 640
+height = 480
+fps = 30
+fix_qp = 23     
+format = YUY2
+device = /dev/video0
+
+[server]
+rtsp_port = 8554
+stream_name = unicast
+max_buf_size = 200000
+max_packet_size  = 1500
+http_enable = false
+http_port = 8000
+bitrate = 1440
+```
+
+### config demo for mipi_csi
+```
+[log]
+level = NOTICE
+
+[video]
+width = 2112
+height = 1568
+fps = 30
+fix_qp = 20    
+format = NV12  ; or | NV16 | NV21 | NV61 |
+device = /dev/video11
+
+[server]
+rtsp_port = 8554
+stream_name = unicast
+max_buf_size = 500000
+max_packet_size  = 1500
+http_enable = false
+http_port = 8000
+bitrate = 1440
+```
+
 ## function
 - support YUY2 or MJPEG format usb camera.
 - support hardware h264 encode.
-- support NV12 NV16 NV21 NV61 format mipi csi camera. (test max support 4224x3136)
+- support NV12 NV16 NV21 NV61 format mipi csi camera. 
+- test ov13850 max support 4224x3136@7.5 fps use ov13850_CMK-CT0116_default.json_4224x3136
+- test ov13850 max support 2112x1568@30 fps use ov13850_CMK-CT0116_default.json_2112x1568
 
 ## Benefits of improvement
 - RkCamRtspServer cpu usage
