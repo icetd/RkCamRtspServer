@@ -43,7 +43,7 @@ bitrate = 1440
 ## function
 - support YUY2 or MJPEG format usb camera.
 - support hardware h264 encode.
-- wupport NV12 NV16 NV21 NV61 format mipi csi camera. (test max support 4224x3136)
+- support NV12 NV16 NV21 NV61 format mipi csi camera. (test max support 4224x3136)
 
 ## Benefits of improvement
 - RkCamRtspServer cpu usage
