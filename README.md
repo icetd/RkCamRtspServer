@@ -87,12 +87,11 @@ bitrate = 1440
 ```
 
 ## function
-- support YUY2 or MJPEG format usb camera.
+- support YUY2 or MJPEG format usb camera (MJPEG flag TJFLAG_LIMITSCANS more faster).
 - support hardware h264 encode.
 - support NV12 NV16 NV21 NV61 format mipi csi camera. 
 - test ov13850 max support 4224x3136@7.5 fps use ov13850_CMK-CT0116_default.json_4224x3136
 - test ov13850 max support 2112x1568@30 fps use ov13850_CMK-CT0116_default.json_2112x1568
-
 ## Benefits of improvement
 - RkCamRtspServer cpu usage
 ```
