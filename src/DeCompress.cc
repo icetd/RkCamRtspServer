@@ -18,7 +18,7 @@ int DeCompress::tjpeg2yuv(unsigned char *jpeg_buffer, int jpeg_size, unsigned ch
 
     int  subsample, colorspace;
     int flags = 0;
-    int padding = 4; // 1或4均可，但不能是0
+    int padding = 1; // 1或4均可，但不能是0
     int ret = 0;
     tjDecompressHeader3(m_handler, jpeg_buffer, jpeg_size, &width, &height, &subsample, &colorspace);
     //LOG(INFO, "w: %d h: %d subsample: %d color: %d\n", width, height, 1, colorspace);
@@ -32,9 +32,8 @@ int DeCompress::tjpeg2yuv(unsigned char *jpeg_buffer, int jpeg_size, unsigned ch
         LOG(ERROR, "malloc buffer for rgb failed.\n");
         return -1;
     }
-
     ret = tjDecompressToYUV2(m_handler, jpeg_buffer, jpeg_size, *yuv_buffer, width,
-                             padding, height, TJFLAG_FASTDCT);
+                             padding, height, TJFLAG_LIMITSCANS);
     if (ret < 0)
     {
         LOG(INFO,"compress to jpeg failed: %s\n", tjGetErrorStr());

@@ -107,19 +107,20 @@ void TransCoder::run()
         buffer =(uint8_t*) malloc(capture->getBufferSize());
         if (ret == 1) {
             int resize = capture->read((char *)buffer, capture->getBufferSize());
+ 
             frameSize = 0;
             if (config.format == "MJPEG") {
                 ret = decompress->tjpeg2yuv(buffer, resize, &yuv_buf, &yuv_size);
                 if (ret >= 0) {
                     frameSize = rk_encoder->encode(yuv_buf, yuv_size, encodeData);
-                    free(yuv_buf);               
+                    free(yuv_buf);
                 }
             } else if (config.format != "MJPEG") {
                 frameSize = rk_encoder->encode(buffer, resize, encodeData);
-            } else  {
+            } else {
                 break;
             }
-             
+
             LOG(INFO, "encodeData size %d", frameSize);
             if (rk_encoder->startCode3(encodeData))
                 startCode = 3;
