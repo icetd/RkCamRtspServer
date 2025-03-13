@@ -4,7 +4,6 @@
 #include "INIReader.h"
 #include "log.h"
 
-
 TransCoder::TransCoder()
 {
     init();
@@ -20,7 +19,7 @@ void TransCoder::init()
     v4l2IoType ioTypeIn = IOTYPE_MMAP;
     MppFrameFormat mpp_fmt;
     v4l2_buf_type buf_type;
-    
+
     INIReader configs("./configs/config.ini");
     if (configs.ParseError() < 0) {
         LOG(ERROR, "read video config failed.");
@@ -64,7 +63,6 @@ void TransCoder::init()
         }
     }
 
-    
     V4L2DeviceParameters param(config.device_name.c_str(),
                                formatList,
                                config.width,
@@ -73,11 +71,9 @@ void TransCoder::init()
                                ioTypeIn,
                                DEBUG);
 
-
-    
     capture = V4l2Capture::create(param, buf_type);
     encodeData = (uint8_t *)malloc(capture->getBufferSize());
-    
+
     decompress = new DeCompress();
 
     Encoder_Param_t encoder_param{
@@ -90,24 +86,24 @@ void TransCoder::init()
         config.fps,
         config.fix_qp};
 
-     rk_encoder = new RkEncoder(encoder_param);
-     rk_encoder->init();
+    rk_encoder = new RkEncoder(encoder_param);
+    rk_encoder->init();
 }
 
 void TransCoder::run()
 {
     uint8_t *buffer;
-    
+
     timeval tv;
     for (;;) {
         tv.tv_sec = 1;
         tv.tv_usec = 0;
         int startCode = 0;
         int ret = capture->isReadable(&tv);
-        buffer =(uint8_t*) malloc(capture->getBufferSize());
+        buffer = (uint8_t *)malloc(capture->getBufferSize());
         if (ret == 1) {
             int resize = capture->read((char *)buffer, capture->getBufferSize());
- 
+
             frameSize = 0;
             if (config.format == "MJPEG") {
                 ret = decompress->tjpeg2yuv(buffer, resize, &yuv_buf, &yuv_size);

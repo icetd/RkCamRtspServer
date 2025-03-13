@@ -32,9 +32,10 @@ public:
     void setOnEncoderDataCallback(std::function<void(std::vector<uint8_t> &&)> callback);
 
     TransCoder::Config_t const &getConfig() const;
+
 private:
     Config_t config;
-    
+
     V4l2Capture *capture;
     uint8_t *yuv_buf;
     int yuv_size;
@@ -42,9 +43,8 @@ private:
     int frameSize;
     std::function<void(std::vector<uint8_t> &&)> onEncodedDataCallback;
 
-	RkEncoder *rk_encoder;
+    RkEncoder *rk_encoder;
     DeCompress *decompress;
 };
-
 
 #endif

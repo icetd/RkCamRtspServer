@@ -2,4 +2,5 @@
 .vscode/
 build/
 thirdparty/mpp
+.clang-format
 compile_commands.json
